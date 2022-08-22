@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
-import { useSetRecoilState, useRecoilState, useResetRecoilState } from 'recoil';
+import { useSetRecoilState, useRecoilState } from 'recoil';
 import { useNavigate, Routes, Route } from "react-router-dom";
 
 import { userState } from './recoil/user/atom';
@@ -18,7 +18,7 @@ function App() {
 
     const setUserDetails = useSetRecoilState(userState);
     // inboxes = {current_room: [], id:[], id:[]}
-    const [inboxes, setInboxes] = useRecoilState(messageState);
+    const setInboxes = useSetRecoilState(messageState);
     const setRoomList = useSetRecoilState(roomState);
     const setMemberList = useSetRecoilState(membersState);
     const setSystemState = useSetRecoilState(systemState);
