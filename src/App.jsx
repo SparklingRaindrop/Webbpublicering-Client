@@ -31,7 +31,7 @@ function App() {
     }, [socket]);
 
     useEffect(() => {
-        const newSocket = io('https://cme-tsubasa-backend.herokuapp.com/', {
+        const newSocket = io(process.env.REACT_APP_BACKEND_URL, {
             forceNew: true,
         });
 
