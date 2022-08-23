@@ -146,7 +146,7 @@ function App() {
         /// Message ///
 
         /*
-            incomingMessage = {
+            incomingMessage (array) = {
                 content: string
                 receiver: obj or undefined 
                     {id: string, name: string, current_room_id: 1, current_room: string}
@@ -158,9 +158,9 @@ function App() {
         */
 
         newSocket.on('msg:new', (incomingMessage) => {
-            const senderId = incomingMessage.sender; // user this user is talking to
-            const senderName = incomingMessage.sender_name;
-            const receiverData = incomingMessage.receiver; // this user
+            const senderId = incomingMessage[0].sender; // user this user is talking to
+            const senderName = incomingMessage[0].sender_name;
+            const receiverData = incomingMessage[0].receiver; // this user
 
             // Add sender to active_dm
             setUserDetails(prev => {
