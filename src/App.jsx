@@ -30,9 +30,9 @@ function App() {
         navigate('/');
         //eslint-disable-next-line
     }, [socket]);
-    //https://cme-tsubasa-backend.herokuapp.com/
+
     useEffect(() => {
-        const newSocket = io('http://localhost:5000/', {
+        const newSocket = io('https://cme-tsubasa-backend.herokuapp.com/', {
             forceNew: true,
         });
         console.log(process.env.TEST);
