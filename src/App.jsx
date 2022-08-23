@@ -28,13 +28,13 @@ function App() {
 
     useEffect(() => {
         navigate('/');
-    }, [socket]);
+    }, [socket, navigate]);
 
     useEffect(() => {
         const newSocket = io(process.env.REACT_APP_BACKEND_URL, {
             forceNew: true,
         });
-
+        console.log(process.env.REACT_APP_BACKEND_URL);
         /// Connection ///
 
         newSocket.on('connect_error', (error) => {
