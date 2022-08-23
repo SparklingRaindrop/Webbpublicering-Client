@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
-import { useSetRecoilState, useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { useNavigate, Routes, Route } from "react-router-dom";
 
 import { userState } from './recoil/user/atom';
@@ -28,7 +28,8 @@ function App() {
 
     useEffect(() => {
         navigate('/');
-    }, [socket, navigate]);
+        //eslint-disable-next-line
+    }, [socket]);
 
     useEffect(() => {
         const newSocket = io('https://cme-tsubasa-backend.herokuapp.com/', {
