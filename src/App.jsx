@@ -31,12 +31,10 @@ function App() {
     }, [socket, navigate]);
 
     useEffect(() => {
-        const IS_PROD = process.env.NODE_ENV === 'production';
-        const URL = IS_PROD ? 'https://cme-tsubasa-backend.herokuapp.com/' : 'http://localhost:5000';
-        const newSocket = io(URL, {
+        const newSocket = io('https://cme-tsubasa-backend.herokuapp.com/', {
             forceNew: true,
         });
-        console.log(process.env.BACKEND_URL);
+        console.log(process.env.TEST);
         /// Connection ///
 
         newSocket.on('connect_error', (error) => {
