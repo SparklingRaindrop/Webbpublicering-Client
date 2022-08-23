@@ -49,7 +49,7 @@ function App() {
 
         /* 
             data = {
-                user,
+                user (array),
                 roomList,
                 message: {
                     room_name: 'current_room',
@@ -59,10 +59,10 @@ function App() {
         */
         newSocket.on('user:initialized', (data) => {
             setUserDetails(() => ({
-                name: data.user.name,
-                id: data.user.id,
-                current_room: data.user.current_room,
-                active_tab: data.user.current_room,
+                name: data.user[0].name,
+                id: data.user[0].id,
+                current_room: data.user[0].current_room,
+                active_tab: data.user[0].current_room,
                 active_dm: [],
             }));
             setRoomList(data.roomList);
