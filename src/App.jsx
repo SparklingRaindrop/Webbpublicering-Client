@@ -30,9 +30,9 @@ function App() {
         navigate('/');
         //eslint-disable-next-line
     }, [socket]);
-
+    //https://cme-tsubasa-backend.herokuapp.com/
     useEffect(() => {
-        const newSocket = io('https://cme-tsubasa-backend.herokuapp.com/', {
+        const newSocket = io('http://localhost:5000/', {
             forceNew: true,
         });
         console.log(process.env.TEST);
@@ -50,7 +50,14 @@ function App() {
 
         /* 
             data = {
-                user (array),
+                user {
+                    [{
+                        id,
+                        name,
+                        current_room_id
+                    }],
+                    current_room
+                },
                 roomList,
                 message: {
                     room_name: 'current_room',
@@ -62,8 +69,8 @@ function App() {
             setUserDetails(() => ({
                 name: data.user[0].name,
                 id: data.user[0].id,
-                current_room: data.user[0].current_room,
-                active_tab: data.user[0].current_room,
+                current_room: data.user.current_room,
+                active_tab: data.user.current_room,
                 active_dm: [],
             }));
             setRoomList(data.roomList);
