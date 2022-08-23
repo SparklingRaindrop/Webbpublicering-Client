@@ -31,10 +31,12 @@ function App() {
     }, [socket, navigate]);
 
     useEffect(() => {
-        const newSocket = io(process.env.REACT_APP_BACKEND_URL, {
+        const IS_PROD = process.env.NODE_ENV === "production";
+        const URL = IS_PROD ? process.env.BACKEND_URL : "http://localhost:5000";
+        const newSocket = io(URL, {
             forceNew: true,
         });
-        console.log(process.env.REACT_APP_BACKEND_URL);
+        console.log(process.env.BACKEND_URL);
         /// Connection ///
 
         newSocket.on('connect_error', (error) => {
