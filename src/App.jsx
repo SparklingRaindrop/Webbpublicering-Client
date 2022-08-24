@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
 import { useSetRecoilState } from 'recoil';
 import { useNavigate, Routes, Route } from "react-router-dom";
@@ -35,14 +35,13 @@ function App() {
         const newSocket = io('https://cme-tsubasa-backend.herokuapp.com/', {
             forceNew: true,
         });
-        console.log(process.env.TEST);
-        /// Connection ///
 
+        /// Connection ///
         newSocket.on('connect_error', (error) => {
             console.log(error);
         });
 
-        newSocket.on("disconnect", (reason) => {
+        newSocket.on("disconnect", () => {
             navigate('/');
         });
 
@@ -169,7 +168,7 @@ function App() {
                     receiverData &&
                     //userDetails.active_dm.length &&
                     prev.active_dm.filter(data => (
-                        data.hasOwnProperty(senderName))).length === 0
+                        Object.prototype.hasOwnProperty.call(data, senderName))).length === 0
                 ) {
                     return {
                         ...prev,
@@ -186,7 +185,7 @@ function App() {
                 // when message obj has a receiver then it's DM.
                 if (receiverData) {
                     // First message from this sender
-                    if (!prev.hasOwnProperty(senderId)) {
+                    if (!Object.prototype.hasOwnProperty.call(prev, senderId)) {
                         const newInbox = [incomingMessage];
 
                         toast({
