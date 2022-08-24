@@ -1,5 +1,7 @@
 import React from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
+import PropTypes from 'prop-types';
+
 
 import { userState } from '../../recoil/user/atom';
 import { messageState } from '../../recoil/message/atom';
@@ -28,7 +30,7 @@ export default function MemberList(props) {
         }));
         setMessages(prev => {
             // When first time to talk to this user, create message box
-            if (!prev.hasOwnProperty(receiver.id)) {
+            if (!Object.prototype.hasOwnProperty.call(prev, receiver.id)) {
                 return {
                     ...prev,
                     [receiver.id]: []
@@ -71,4 +73,9 @@ export default function MemberList(props) {
             }
         </UnorderedList>
     );
+}
+
+MemberList.propTypes = {
+    members: PropTypes.array,
+    handleSwitchTab: PropTypes.func
 }

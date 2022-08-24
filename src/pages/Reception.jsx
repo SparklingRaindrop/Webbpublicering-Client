@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSetRecoilState } from 'recoil';
+import PropTypes from 'prop-types';
 
 import { userState } from '../recoil/user/atom';
 
@@ -21,6 +22,10 @@ export default function Reception(props) {
             <LoginField socket={socket} />
         </Center>
     )
+}
+
+Reception.propTypes = {
+    socket: PropTypes.object,
 }
 
 function LoginField(props) {
@@ -59,7 +64,7 @@ function LoginField(props) {
     return (
         <Box bg='teal.100' p='2rem' borderRadius='lg' color='teal.900'>
             <FormControl>
-                <FormLabel htmlFor='userName'>What's your nickname?</FormLabel>
+                <FormLabel htmlFor='userName'>What&#39;s your nickname?</FormLabel>
                 <Input
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
@@ -76,4 +81,8 @@ function LoginField(props) {
             </Button>
         </Box>
     );
+}
+
+LoginField.propTypes = {
+    socket: PropTypes.object,
 }

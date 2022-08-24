@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { GridItem } from '@chakra-ui/react';
 import UserDisplay from './UserDisplay';
 
@@ -20,4 +22,9 @@ export default function Sidebar(props) {
                 handleSwitchTab={handleSwitchTab} />
         </GridItem>
     )
+}
+
+Sidebar.propTypes = {
+    socket: PropTypes.object,
+    handleSwitchTab: PropTypes.func
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
+import PropTypes from 'prop-types';
 
 import { messageState } from '../../recoil/message/atom';
 import { systemState } from '../../recoil/system/atom';
@@ -51,4 +52,9 @@ export default function ConversationWindow(props) {
             </Flex>
         </VStack>
     )
+}
+
+ConversationWindow.propTypes = {
+    receiverId: PropTypes.string,
+    tabIndex: PropTypes.number
 }

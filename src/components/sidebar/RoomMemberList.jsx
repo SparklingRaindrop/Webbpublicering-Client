@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
+import PropTypes from 'prop-types';
 
 import { userState } from '../../recoil/user/atom';
-import { messageState } from '../../recoil/message/atom';
 
 import {
     AccordionItem,
@@ -69,6 +69,15 @@ function PasswordPopUp(props) {
     )
 }
 
+PasswordPopUp.propTypes = {
+    isOpen: PropTypes.bool,
+    action: PropTypes.string,
+    value: PropTypes.string,
+    onClose: PropTypes.func,
+    handleOnClick: PropTypes.func,
+    handleInput: PropTypes.func,
+}
+
 export default function RoomMemberList(props) {
     const { name, members, socket, password, handleSwitchTab } = props;
 
@@ -79,7 +88,6 @@ export default function RoomMemberList(props) {
     const [action, setAction] = useState(null);
 
     const [user, updateUserState] = useRecoilState(userState);
-    const setInboxes = useSetRecoilState(messageState);
 
     const { isOpen, onOpen, onClose } = useDisclosure();
     const toast = useToast();
@@ -263,4 +271,12 @@ export default function RoomMemberList(props) {
                 handleInput={handleInput} />
         </>
     );
+}
+
+RoomMemberList.propTypes = {
+    name: PropTypes.string,
+    members: PropTypes.array,
+    socket: PropTypes.object,
+    password: PropTypes.string,
+    handleSwitchTab: PropTypes.func,
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { GridItem } from '@chakra-ui/react';
 
@@ -18,4 +19,8 @@ export default function UserInputSection(props) {
                 socket={socket} />
         </GridItem>
     )
+}
+
+UserInputSection.propTypes = {
+    socket: PropTypes.object.isRequired,
 }

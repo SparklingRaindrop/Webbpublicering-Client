@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
+import PropTypes from 'prop-types';
 
 import { messageState } from '../recoil/message/atom';
 import { systemState } from '../recoil/system/atom';
@@ -43,4 +44,8 @@ export default function Chat(props) {
                 socket={socket} />
         </Grid >
     );
+}
+
+Chat.propTypes = {
+    socket: PropTypes.object,
 }

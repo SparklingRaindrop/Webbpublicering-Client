@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import PropTypes from 'prop-types';
 
 import { GridItem, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
 
@@ -17,6 +18,9 @@ function TabButton(props) {
     );
 }
 
+TabButton.propTypes = {
+    label: PropTypes.string.isRequired,
+}
 export default function ConversationTabs(props) {
     const { tabIndex, handleSwitchTab } = props;
     const [{ active_dm, current_room, active_tab }, setUserDetails] = useRecoilState(userState);
@@ -120,7 +124,7 @@ export default function ConversationTabs(props) {
                                     <ConversationWindow
                                         tabIndex={tabIndex}
                                         receiverId={active_dm.find(receiverData =>
-                                            receiverData.hasOwnProperty(receiverName))[receiverName]
+                                            Object.prototype.hasOwnProperty.call(receiverData, receiverName))[receiverName]
                                         } />
                                 </TabPanel>
                             );
@@ -130,4 +134,9 @@ export default function ConversationTabs(props) {
             </GridItem>
         </Tabs>
     )
+}
+
+ConversationTabs.propTypes = {
+    tabIndex: PropTypes.number.isRequired,
+    handleSwitchTab: PropTypes.func.isRequired,
 }

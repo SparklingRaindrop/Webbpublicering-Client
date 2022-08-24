@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { GridItem } from '@chakra-ui/react';
 
@@ -19,4 +20,9 @@ export default function MainSection(props) {
                 handleSwitchTab={handleSwitchTab} />
         </GridItem>
     )
+}
+
+MainSection.propTypes = {
+    tabIndex: PropTypes.number,
+    handleSwitchTab: PropTypes.func
 }

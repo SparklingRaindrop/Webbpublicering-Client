@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+
 import {
     useToast,
     Button,
@@ -89,4 +91,10 @@ export default function CreateNewRoomPopUp(props) {
             </ModalContent>
         </Modal>
     )
+}
+
+CreateNewRoomPopUp.propTypes = {
+    isOpen: PropTypes.bool,
+    onClose: PropTypes.func,
+    socket: PropTypes.object
 }

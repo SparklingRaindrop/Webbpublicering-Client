@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import {
     AccordionButton,
@@ -53,4 +54,9 @@ export default function ActiveUserList(props) {
             )}
         </AccordionItem>
     );
+}
+
+ActiveUserList.propTypes = {
+    members: PropTypes.array,
+    handleSwitchTab: PropTypes.func
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
+import PropTypes from 'prop-types';
 
 import { roomState } from '../../recoil/room/atom';
 import { membersState } from '../../recoil/members/atom';
@@ -58,4 +59,9 @@ export default function UserDisplay(props) {
             <CreateNewRoomPopUp isOpen={isOpen} onClose={onClose} socket={socket} />
         </VStack >
     );
+}
+
+UserDisplay.propTypes = {
+    socket: PropTypes.object,
+    handleSwitchTab: PropTypes.func
 }

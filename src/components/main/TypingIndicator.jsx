@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Box, Flex } from '@chakra-ui/react';
 
 
@@ -11,6 +12,9 @@ export default function TypingIndicator(props) {
     )
 }
 
+TypingIndicator.propTypes = {
+    name: PropTypes.string,
+}
 
 // https://jv.orgfree.com/animations/en/dots1.php
 function ThreeDotsAnimation() {

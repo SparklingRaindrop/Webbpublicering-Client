@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { toArray } from 'react-emoji-render';
-
+import PropTypes from 'prop-types';
 
 import { userState } from '../../recoil/user/atom';
 import { messageState } from '../../recoil/message/atom';
@@ -40,7 +40,7 @@ export default function MessageField(props) {
             active_dm: [{ name: id }, { name: id }]
         */
         if (active_tab !== current_room) {
-            const receiverData = active_dm.find(data => data.hasOwnProperty(active_tab));
+            const receiverData = active_dm.find(data => Object.prototype.hasOwnProperty.call(data, active_tab));
             outgoingMessage.receiver = receiverData[active_tab];
         }
 
@@ -65,7 +65,7 @@ export default function MessageField(props) {
                 setInboxes(prev => {
                     // When user click on the DM button in MemberList,
                     // the user will be added to active_dm
-                    const receiverData = active_dm && active_dm.find(data => data.hasOwnProperty(active_tab));
+                    const receiverData = active_dm && active_dm.find(data => Object.prototype.hasOwnProperty.call(data, active_tab));
                     if (active_dm && receiverData) {
                         const receiverId = receiverData[active_tab];
                         return {
@@ -90,7 +90,7 @@ export default function MessageField(props) {
 
     function handleTypingStart() {
         const target = active_tab !== current_room ?
-            { receiver: active_dm.find(data => data.hasOwnProperty(active_tab))[active_tab] } :
+            { receiver: active_dm.find(data => Object.prototype.hasOwnProperty.call(data, active_tab))[active_tab] } :
             { room_name: current_room };
         socket.emit('user:typing_start', target, (response) => {
             if (response.status !== 200) {
@@ -101,7 +101,7 @@ export default function MessageField(props) {
 
     function handleTypingEnd() {
         const target = active_tab !== current_room ?
-            { receiver: active_dm.find(data => data.hasOwnProperty(active_tab))[active_tab] } :
+            { receiver: active_dm.find(data => Object.prototype.hasOwnProperty.call(data, active_tab))[active_tab] } :
             { room_name: current_room };
 
         socket.emit('user:typing_stop', target, (response) => {
@@ -172,4 +172,8 @@ export default function MessageField(props) {
         </VStack>
 
     )
+}
+
+MessageField.propTypes = {
+    socket: PropTypes.object.isRequired,
 }

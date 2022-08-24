@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 
 import { Center, Grid, HStack, IconButton, VStack } from '@chakra-ui/react';
 import { ChevronRightIcon, ChevronLeftIcon } from '@chakra-ui/icons'
@@ -12,7 +13,6 @@ export default function EmojiPicker(props) {
     const { onEmojiClick, setIsHidden } = props;
     const [index, setPager] = useState(0);
     const pickerContainer = useRef(null);
-    const button = document.querySelector('.emojiPickerButton');
 
     useEffect(() => {
 
@@ -83,4 +83,9 @@ export default function EmojiPicker(props) {
             </VStack>
         </>
     )
+}
+
+EmojiPicker.propTypes = {
+    onEmojiClick: PropTypes.func.isRequired,
+    setIsHidden: PropTypes.func.isRequired
 }

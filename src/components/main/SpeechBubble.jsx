@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 import { useRecoilValue } from 'recoil';
 
 import { userState } from '../../recoil/user/atom';
@@ -53,4 +54,8 @@ export default function SpeechBubble({ msg }) {
             </GridItem>
         </Grid>
     );
+}
+
+SpeechBubble.propTypes = {
+    msg: PropTypes.object,
 }
